@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 4837367326524369464}
   - component: {fileID: 3336961495479384732}
   m_Layer: 0
-  m_Name: Turret
+  m_Name: AnotherTurret 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -195,12 +195,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47165f07379a14900bfd1e3ce409fd38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _range: 15
+  _range: 30
   _partToRotate: {fileID: 7427056100541199776}
-  _turnSpeed: 7
-  _fireRate: 1
+  _turnSpeed: 10
+  _fireRate: 0.5
   _bulletPrefab: {fileID: 5858003560349452040, guid: d10cb7230a86a42fba8a28508446c859, type: 3}
-  _firePoint: {fileID: 0}
+  _firePoint: {fileID: 5385843619968376708}
 --- !u!1 &8547271099688994382
 GameObject:
   m_ObjectHideFlags: 0
