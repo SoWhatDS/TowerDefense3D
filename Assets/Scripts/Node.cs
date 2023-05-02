@@ -8,7 +8,9 @@ public class Node : MonoBehaviour
     [SerializeField] private Color _hoverColor;
     [SerializeField] private Vector3 _positionOffSet;
 
-    private GameObject _turret;
+    [Header("Optional")]
+    public GameObject _turret;
+
     private Renderer _rend;
     private Color _startColor;
 
@@ -21,13 +23,18 @@ public class Node : MonoBehaviour
         _buildManager = BuildManager.Instance;
     }
 
+    public Vector3 GetBuildPosition()
+    {
+        return transform.position + _positionOffSet;
+    }
+
     private void OnMouseDown()
     {
         if (EventSystem.current.IsPointerOverGameObject())
         {
             return;
         }
-        if (_buildManager.GetTurretToBuild() == null)
+        if (!_buildManager.CanBuild)
         {
             return;
         }
@@ -37,8 +44,7 @@ public class Node : MonoBehaviour
             return;
         }
 
-        GameObject turretToBuild = BuildManager.Instance.GetTurretToBuild();
-        _turret = (GameObject)Instantiate(turretToBuild, transform.position + _positionOffSet, transform.rotation);
+        _buildManager.BuildTurretOn(this);
     }
 
     private void OnMouseEnter()
@@ -47,7 +53,7 @@ public class Node : MonoBehaviour
         {
             return;
         }
-        if (_buildManager.GetTurretToBuild() == null)
+        if (!_buildManager.CanBuild)
         {
             return;
         }

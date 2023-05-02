@@ -50,7 +50,7 @@ MonoBehaviour:
   _partToRotate: {fileID: 6420461412926563731}
   _turnSpeed: 10
   _fireRate: 0.25
-  _bulletPrefab: {fileID: 5858003560349452040, guid: d10cb7230a86a42fba8a28508446c859, type: 3}
+  _bulletPrefab: {fileID: 5393566570656799089, guid: e1ace1818da2a457ca30e0ed74da5254, type: 3}
   _firePoint: {fileID: 5115212840905341963}
 --- !u!1 &529492131060274418
 GameObject:
