@@ -8,6 +8,8 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private GameObject _impactEffect;
     [SerializeField] private float _explosionRadius;
+    [SerializeField] private int _damage;
+
     private Transform _target;
 
     public void Seek(Transform target)
@@ -69,7 +71,12 @@ public class Bullet : MonoBehaviour
 
     private void Damage(Transform enemy)
     {
-        Destroy(enemy.gameObject);
+        Enemy e = enemy.GetComponent<Enemy>();
+
+        if (e != null)
+        {
+            e.TakeDamage(_damage);
+        }
     }
 
     private void OnDrawGizmosSelected()

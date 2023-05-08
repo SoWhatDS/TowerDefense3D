@@ -131,3 +131,4 @@ MonoBehaviour:
   _speed: 30
   _impactEffect: {fileID: 5802910527427972443, guid: 695f823516f9b4e7e85f2eef556176ed, type: 3}
   _explosionRadius: 8
+  _damage: 100

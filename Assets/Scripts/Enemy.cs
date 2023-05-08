@@ -1,9 +1,13 @@
 
+using System;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float _speed;
+    [SerializeField] private int _health = 100;
+    [SerializeField] private int _priceForEnemy = 50;
+    [SerializeField] private GameObject _enemyDieEffect;
 
     private Transform _target;
     private int _wavePointIndex = 0;
@@ -24,14 +28,38 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void TakeDamage(int amount)
+    {
+        _health -= amount;
+
+        if (_health <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        PlayerStats.Money += _priceForEnemy;
+        GameObject dieEffect = (GameObject)Instantiate(_enemyDieEffect, transform.position, Quaternion.identity);
+        Destroy(dieEffect, 2f);
+        Destroy(gameObject);
+    }
+
     private void GetNextWayPoint()
     {
         if (_wavePointIndex >= WayPoints.wayPoints.Length - 1)
         {
-            Destroy(gameObject);
+            EndPath();
             return;
         }
         _wavePointIndex++;
         _target = WayPoints.wayPoints[_wavePointIndex];
+    }
+
+    private void EndPath()
+    {
+        PlayerStats.Lives--;
+        Destroy(gameObject);
     }
 }

@@ -5,7 +5,8 @@ using UnityEngine.EventSystems;
 
 public class Node : MonoBehaviour
 {
-    [SerializeField] private Color _hoverColor;
+    [SerializeField] private Color hoverColor;
+    [SerializeField] private Color notEnoughMoney;
     [SerializeField] private Vector3 _positionOffSet;
 
     [Header("Optional")]
@@ -57,7 +58,14 @@ public class Node : MonoBehaviour
         {
             return;
         }
-        _rend.material.color = _hoverColor;
+        if (_buildManager.HasMoney)
+        {
+            _rend.material.color = hoverColor;
+        }
+        else
+        {
+            _rend.material.color = notEnoughMoney;
+        }
     }
 
     private void OnMouseExit()
