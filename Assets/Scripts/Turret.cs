@@ -11,10 +11,17 @@ public class Turret : MonoBehaviour
     [SerializeField] private float _fireRate;
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private Transform _firePoint;
+    [SerializeField] private bool _useLaser = false;
+    [SerializeField] private LineRenderer _lineRenderer;
+    [SerializeField] private ParticleSystem _impactEffect;
+    [SerializeField] private Light _impactLight;
+    [SerializeField] private int _damageOverTime;
+    [SerializeField] private float _slowPct;
 
     private float _fireCountDown = 0f;
     private Transform _target;
     private string _enemyTag = "Enemy";
+    private Enemy _targetEnemy;
     
 
     private void Start()
@@ -26,21 +33,36 @@ public class Turret : MonoBehaviour
     {
         if (_target == null)
         {
+            if (_useLaser)
+            {
+                if (_lineRenderer.enabled)
+                {
+                    _lineRenderer.enabled = false;
+                    _impactEffect.Stop();
+                    _impactLight.enabled = false;
+                }
+                    
+            }
             return;
         }
 
-        Vector3 direction = _target.position - transform.position;
-        Quaternion lookRotation = Quaternion.LookRotation(direction);
-        Vector3 rotation = Quaternion.Lerp(_partToRotate.rotation,lookRotation,Time.deltaTime * _turnSpeed).eulerAngles;
-        _partToRotate.rotation = Quaternion.Euler(0f,rotation.y,0f);
+        LockOnTarget();
 
-        if (_fireCountDown <= 0f)
+        if (_useLaser)
         {
-            Shoot();
-            _fireCountDown = 1f / _fireRate;
+            Laser();
+        }
+        else
+        {
+            if (_fireCountDown <= 0f)
+            {
+                Shoot();
+                _fireCountDown = 1f / _fireRate;
+            }
+
+            _fireCountDown -= Time.deltaTime;
         }
 
-        _fireCountDown -= Time.deltaTime;
     }
 
     private void Shoot()
@@ -52,6 +74,34 @@ public class Turret : MonoBehaviour
         {
             bullet.Seek(_target);
         }
+    }
+
+    private void Laser()
+    {
+        _targetEnemy.TakeDamage(_damageOverTime * Time.deltaTime);
+        _targetEnemy.Slow(_slowPct);
+
+        if (!_lineRenderer.enabled)
+        {
+            _lineRenderer.enabled = true;
+            _impactEffect.Play();
+            _impactLight.enabled = true;
+        }
+        _lineRenderer.SetPosition(0, _firePoint.position);
+        _lineRenderer.SetPosition(1, _target.position);
+
+        Vector3 direction = _firePoint.position - _target.position;
+        _impactEffect.transform.position = _target.position + direction.normalized;
+        _impactEffect.transform.rotation = Quaternion.LookRotation(direction); 
+        
+    }
+
+    private void LockOnTarget()
+    {
+        Vector3 direction = _target.position - transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+        Vector3 rotation = Quaternion.Lerp(_partToRotate.rotation, lookRotation, Time.deltaTime * _turnSpeed).eulerAngles;
+        _partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }
 
     private void UpdateTarget()
@@ -75,6 +125,7 @@ public class Turret : MonoBehaviour
         if (nearestEnemy != null && shortestDistance <= _range)
         {
             _target = nearestEnemy.transform;
+            _targetEnemy = nearestEnemy.GetComponent<Enemy>();
         }
         else
         {
