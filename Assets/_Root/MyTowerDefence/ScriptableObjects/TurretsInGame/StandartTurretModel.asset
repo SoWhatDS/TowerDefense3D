@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65afaf5e5e42405d90acd0102082ddd, type: 3}
+  m_Name: StandartTurretModel
+  m_EditorClassIdentifier: 
+  _range: 10
+  _turnSpeed: 10
+  _typeTurret: 0
+  _turretPrefab: {fileID: 7456274242073340139, guid: 241143894fa584bf5aebc21fe860aa26, type: 3}
+  _price: 100
+  _offsetToBuild: {x: 0, y: 0.5, z: 0}
+  IsCanBuild: 0
+  _bulletPrefab: {fileID: 5858003560349452040, guid: d10cb7230a86a42fba8a28508446c859, type: 3}
+  _bulletSpeed: 15
+  _bulletImpactEffect: {fileID: 5464389233664510952, guid: ccf4b42b58aaf4f86906ced07673267b, type: 3}
+  _bulletDamage: 25
+  _isUseLaser: 0
+  _lineRenderer: {fileID: 0}
+  _upgradeTurretPrefab: {fileID: 7456274242073340139, guid: 2ac517447e3a14428abcdd58315462c5, type: 3}
+  _upgradeCost: 150
+  _sellTurretCost: 50
+  _sellUpgradableTurretCost: 75
+  IsUpgradable: 1

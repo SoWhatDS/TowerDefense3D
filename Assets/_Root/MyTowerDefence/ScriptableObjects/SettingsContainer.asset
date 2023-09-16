@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4368359b31b1e4af1a482ab9b909ceb9, type: 3}
+  m_Name: SettingsContainer
+  m_EditorClassIdentifier: 
+  _cameraModel: {fileID: 11400000, guid: 7ee502c8f469f4e1595f35f8bab5fbbe, type: 2}
+  _enemyModel: {fileID: 11400000, guid: 1c5e168fe343941fa8165fdf2fc61709, type: 2}
+  _waveSpawnerModel: {fileID: 11400000, guid: 45a090e8718d74120a32c84f408f2154, type: 2}
+  _playerStatisticsModel: {fileID: 11400000, guid: 92cfcbb45c76944d4bc516b0d70f05e5, type: 2}
+  _allTurretsInGameModel: {fileID: 11400000, guid: 488e9530f35e345a180573c1d7384cec, type: 2}
+  _buildModel: {fileID: 11400000, guid: fc9d8fc8c7b5b4d0bbf33babf96b68f1, type: 2}
+  _upgradeModel: {fileID: 11400000, guid: be0155542359e48398878ddf84d239fa, type: 2}

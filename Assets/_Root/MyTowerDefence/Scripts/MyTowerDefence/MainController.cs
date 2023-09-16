@@ -5,49 +5,46 @@ using UnityEngine;
 using Utils;
 using LevelSelect;
 using Game;
+using Tools;
 
 internal sealed class MainController : BaseController
 {
-    private readonly SettingsForGame _settings;
+    private readonly Profile _profile;
     private readonly Transform _startPoint;
+    private readonly SettingsContainer _settings;
+    private readonly SceneFaderView _sceneFader;
 
     private MainMenuController _mainMenuController;
     private GameController _gameController;
     private LevelSelectController _levelSelectController;
 
-    public MainController(Transform startPoint,SettingsForGame settingsForGame)
+    public MainController(Transform startPoint,Profile profile,SettingsContainer settings,SceneFaderView sceneFaderView)
     {
-        _settings = settingsForGame;
+        _settings = settings;
+        _profile = profile;
         _startPoint = startPoint;
-        _settings.CurrentState.SubscribeOnChange(OnChangeGameState);
-        OnChangeGameState(_settings.CurrentState.Value);
-    }
-
-    protected override void OnDispose()
-    {
-        _mainMenuController ?.Dispose();
-        _gameController ?.Dispose();
-        _levelSelectController?.Dispose();
-        _settings.CurrentState.UnSubcribeOnChange(OnChangeGameState);
+        _sceneFader = sceneFaderView;
+        _profile.CurrentState.SubscribeOnChange(OnChangeGameState);
+        OnChangeGameState(_profile.CurrentState.Value);
     }
 
     private void OnChangeGameState(GameState state)
     {
+        DisposeAllControllers();
+
         switch (state)
         {
             case GameState.MainMenu:
-                _mainMenuController = new MainMenuController(_startPoint,_settings);
-                _gameController?.Dispose();
-                _levelSelectController?.Dispose();
+                _sceneFader.FadeInScene();
+                _mainMenuController = new MainMenuController(_startPoint,_profile);
                 break;
             case GameState.StartGame:
-                _gameController = new GameController(_startPoint,_settings);
-                _mainMenuController?.Dispose();
-                _levelSelectController?.Dispose();
+                _sceneFader.FadeInScene();
+                _gameController = new GameController(_startPoint,_profile,_settings);
                 break;
             case GameState.LevelSelect:
-                _levelSelectController = new LevelSelectController(_startPoint,_settings);
-                _mainMenuController?.Dispose();
+                _sceneFader.FadeInScene();
+                _levelSelectController = new LevelSelectController(_startPoint,_profile);
                 break;
             default:
                 _mainMenuController?.Dispose();
@@ -55,5 +52,20 @@ internal sealed class MainController : BaseController
                 _levelSelectController?.Dispose();
                 break;
         }
+    }
+
+    private void DisposeAllControllers()
+    {
+        _gameController?.Dispose();
+        _levelSelectController?.Dispose();
+        _mainMenuController?.Dispose();
+    }
+
+    protected override void OnDispose()
+    {
+        _mainMenuController?.Dispose();
+        _gameController?.Dispose();
+        _levelSelectController?.Dispose();
+        _profile.CurrentState.UnSubcribeOnChange(OnChangeGameState);
     }
 }

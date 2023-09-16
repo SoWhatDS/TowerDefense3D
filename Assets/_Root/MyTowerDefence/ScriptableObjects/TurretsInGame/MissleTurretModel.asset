@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65afaf5e5e42405d90acd0102082ddd, type: 3}
+  m_Name: MissleTurretModel
+  m_EditorClassIdentifier: 
+  _range: 15
+  _turnSpeed: 15
+  _typeTurret: 1
+  _turretPrefab: {fileID: 480952296469810149, guid: 1433b028432bf44c6b8c18f6553d575b, type: 3}
+  _price: 250
+  _offsetToBuild: {x: 0, y: 0.5, z: 0}
+  IsCanBuild: 0
+  _bulletPrefab: {fileID: 5393566570656799089, guid: e1ace1818da2a457ca30e0ed74da5254, type: 3}
+  _bulletSpeed: 20
+  _bulletImpactEffect: {fileID: 5802910527427972443, guid: 695f823516f9b4e7e85f2eef556176ed, type: 3}
+  _bulletDamage: 35
+  _isUseLaser: 0
+  _lineRenderer: {fileID: 0}
+  _upgradeTurretPrefab: {fileID: 480952296469810149, guid: d18d87037ce3c4a5c903e0623435ef46, type: 3}
+  _upgradeCost: 350
+  _sellTurretCost: 125
+  _sellUpgradableTurretCost: 175
+  IsUpgradable: 1

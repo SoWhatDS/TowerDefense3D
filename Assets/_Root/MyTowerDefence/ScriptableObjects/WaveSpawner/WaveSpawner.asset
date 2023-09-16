@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aadf4b73e3c514c61a6ac4b025f6f038, type: 3}
+  m_Name: WaveSpawner
+  m_EditorClassIdentifier: 
+  _timeBetweenWaves: 5
+  _countDown: 0
+  _waveIndex: 0
+  _spawnDelay: 0.5
+  _waves:
+  - Enemy: {fileID: 6979222541837439840, guid: de34af0fa29cb40e59ff4984ed19a831, type: 3}
+    Rate: 2
+    Count: 5
+  - Enemy: {fileID: 6979222541837439840, guid: de34af0fa29cb40e59ff4984ed19a831, type: 3}
+    Rate: 3
+    Count: 5
+  - Enemy: {fileID: 6979222541837439840, guid: de34af0fa29cb40e59ff4984ed19a831, type: 3}
+    Rate: 4
+    Count: 5
+  - Enemy: {fileID: 6979222541837439840, guid: ddbd5364766394a81b568eea1c1f2760, type: 3}
+    Rate: 5
+    Count: 5
+  - Enemy: {fileID: 6979222541837439840, guid: c70bf0be569694f8ea5575629485edd3, type: 3}
+    Rate: 6
+    Count: 5

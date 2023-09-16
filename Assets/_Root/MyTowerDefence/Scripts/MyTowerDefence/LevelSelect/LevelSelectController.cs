@@ -11,12 +11,12 @@ namespace LevelSelect
     {
         private LevelSelectView _levelSelectView;
         private Transform _startPoint;
-        private SettingsForGame _settings;
+        private Profile _profile;
 
-        public LevelSelectController(Transform startPoint,SettingsForGame settings)
+        public LevelSelectController(Transform startPoint,Profile profile)
         {
             _startPoint = startPoint;
-            _settings = settings;
+            _profile = profile;
             _levelSelectView = LoadLevelSelectView();
             _levelSelectView.Init(SelectLevel);
         }
@@ -31,7 +31,7 @@ namespace LevelSelect
 
         private void SelectLevel()
         {
-            _settings.CurrentState.Value = GameState.StartGame;
+            _profile.CurrentState.Value = GameState.StartGame;
         }
     }
 }
